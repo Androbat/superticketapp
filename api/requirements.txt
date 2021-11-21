@@ -1,2 +1,5 @@
 // bcrypt to encrypt the passwords
 // fastify to create de api
+
+
+// Should code the item model
