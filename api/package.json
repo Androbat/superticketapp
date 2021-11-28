@@ -13,10 +13,13 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
+    "boom": "^7.3.0",
     "dotenv": "^10.0.0",
     "fastify": "^3.22.0",
+    "fastify-swagger": "^4.12.6",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.5",
+    "nodemon": "^2.0.15",
     "save": "^2.4.0"
   }
 }

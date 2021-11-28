@@ -3,3 +3,12 @@
 
 
 // Should code the item model
+
+/*
+Swagger documentation generator for Fastify. 
+It uses the schemas you declare in your routes to generate a swagger compliant doc.
+*/
+
+/*
+boom provides a set of utilities for returning HTTP errors.
+*/
