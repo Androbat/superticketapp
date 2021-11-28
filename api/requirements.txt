@@ -1,5 +1,6 @@
 // bcrypt to encrypt the passwords
 // fastify to create de api
+// git doc: https://wethefoss.github.io/Git-Commands/
 
 
 // Should code the item model
