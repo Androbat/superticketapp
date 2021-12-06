@@ -1,6 +1,32 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
+const fastify = require('fastify')({
+  logger: true // logger - messages to show errors, warning and debug
+
+}); 
+
 const Ticket = require('./models/Ticket');
+
+// simple route
+fastify.get('/', async(request, reply) => {
+
+  return {hello: 'This is working'}
+});
+
+// Run the server
+const start = () => {
+
+  try {
+    fastify.listen(3000);
+    fastify.log.info(`Server is running`);
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+
+};
+
+start();
 
 // mongo db connection
 mongoose.connect(process.env.URI, 
@@ -11,34 +37,19 @@ mongoose.connect(process.env.URI,
     }, () => { console.log('Connected')}
     );
 
-// push to master
-    let addTicket = (req, reply) => {
-        
-          
 
-          try {
 
-            const ticket = new Ticket({ticket_name: "Grada", price: 1.52, description: "hola"})
-            return ticket.save()
 
-            console.log("It's working");
-  
-          } catch (error)
-          {
 
-            console.error(error);
-          }
-        
-      }
+
+
+
+    
+    
+     
+
     
 
-    /* testing
-    const database = moongose.connection;
-
-    database.on('Error', console.error.bind(console, 'connection error: '));
-    database.once('open', () => {
-        console.log('coneccted!');
-    });
-    */
-
-    addTicket();
+   
+    
+    
