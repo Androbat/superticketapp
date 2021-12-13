@@ -5,6 +5,8 @@ const fastify = require('fastify')({
 
 }); 
 
+const PORT = 3000
+
 const Ticket = require('./models/Ticket');
 
 // simple route
@@ -17,7 +19,7 @@ fastify.get('/', async(request, reply) => {
 const start = () => {
 
   try {
-    fastify.listen(3000);
+    fastify.listen(PORT);
     fastify.log.info(`Server is running`);
   } catch (err) {
     fastify.log.error(err);
