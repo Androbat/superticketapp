@@ -42,6 +42,13 @@ mongoose.connect(process.env.URI,
 
 
 
+     // Ticket test
+
+             
+    let ticket = new Ticket({_id: 1, ticket_name: 'Gorda', price: 5.2, description: 'descrip'});
+    ticket.save();
+     
+     
 
 
 
