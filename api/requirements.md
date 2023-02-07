@@ -1,0 +1,2 @@
+- bcrypt to encrypt the passwords
+- fastify to create de api

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
-const Ticket = require('./models/Ticket');
+// const Ticket = require('./models/Ticket');
 
 // mongo db connection
 mongoose.connect(process.env.URI, 
@@ -8,7 +8,7 @@ mongoose.connect(process.env.URI,
         useNewUrlParser: true,
         useUnifiedTopology: true
 
-    }, () => { console.log('Connected')}
+    }, () => { console.log('Connected klk')}
     );
 
 // push to master
@@ -41,4 +41,4 @@ mongoose.connect(process.env.URI,
     });
     */
 
-    addTicket();
+    // addTicket();
