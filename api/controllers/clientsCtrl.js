@@ -17,6 +17,10 @@ module.exports = {
   }
   if (duplicatedEmail || !validator.isEmail(mail)) return res.status(409).json({'message': 'Email duplicated or invalid'}); //conflict
 
+  //  validates pwd
+  if (!validator.isLength(pwd, { min: 8 })) {return res.status(409).json({'message': 'Password must have more than 8 characters'}); //conflict
+}
+
   try {
     //encrypt pawd
     const hashedpwd = await bcrypt.hash(pwd, 10);
@@ -32,6 +36,7 @@ module.exports = {
     res.status(500).json({ 'message': error.message });
   }
 },
+
 getAllClients : async ( req, res ) => {
   try {
     const getClients = await Client.find({})
