@@ -1,5 +1,6 @@
 const Client = require("../models/Client");
 const bcrypt = require("bcrypt");
+const validator = require("validator");
 
 module.exports = {
   postClient : async ( req, res ) => {
@@ -7,11 +8,18 @@ module.exports = {
   if (!name || !mail || !pwd)
     return res.status(400).json({ message: "email and password are required" });
 
-  // check for clients usernames in the db
-  const duplicate = await Client.findOne({
-    email: mail,
-  }).exec();
-  if (duplicate) return res.status(409).json({'message': 'Email duplicated'}); //conflict
+  // check for clients email or "name" in the db
+  let duplicatedEmail;
+  if(validator.isEmail(mail)){
+    duplicatedEmail = await Client.findOne({
+      email: mail
+    }).exec();
+  }
+  if (duplicatedEmail || !validator.isEmail(mail)) return res.status(409).json({'message': 'Email duplicated or invalid'}); //conflict
+
+  //  validates pwd
+  if (!validator.isLength(pwd, { min: 8 })) {return res.status(409).json({'message': 'Password must have more than 8 characters'}); //conflict
+}
 
   try {
     //encrypt pawd
@@ -28,6 +36,7 @@ module.exports = {
     res.status(500).json({ 'message': error.message });
   }
 },
+
 getAllClients : async ( req, res ) => {
   try {
     const getClients = await Client.find({})
