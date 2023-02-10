@@ -1,24 +1,28 @@
 const Seller = require("../models/Seller");
 const bcrypt = require("bcrypt");
+const validator = require("validator")
 
 module.exports = {
   postSeller : async ( req, res ) => {
   const { name, mail, pwd, storename } = req.body;
   if (!name || !mail || !pwd || !storename)
     return res.status(400).json({ message: "email and password, & storename are required" });
-
-  // check for Sellers usernames in the db
-  const duplicatedEmail = await Seller.findOne({
-    email: mail
-  }).exec();
+  
+    // check for Sellers usernames in the db
+    let duplicatedEmail;
+  if(validator.isEmail(mail)){
+    duplicatedEmail = await Seller.findOne({
+      email: mail
+    }).exec();
+  }
    const duplicateStore = await Seller.findOne({
     storename
   }).exec();
 
   if(duplicateStore && duplicatedEmail) {
     return res.status(409).json({'message': 'Email and StoreName are duplicated'}); //conflict
-}else if (duplicatedEmail) {
-  return res.status(409).json({'message': 'Email duplicated'}); //conflict
+}else if (duplicatedEmail || !validator.isEmail(mail)) {
+  return res.status(409).json({'message': 'Email duplicated or not Valid'}); //conflict
 } else if (duplicateStore) {
   return res.status(409).json({'message': 'Store name duplicated'}); //conflict
 }

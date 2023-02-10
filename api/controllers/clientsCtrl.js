@@ -1,5 +1,6 @@
 const Client = require("../models/Client");
 const bcrypt = require("bcrypt");
+const validator = require("validator");
 
 module.exports = {
   postClient : async ( req, res ) => {
@@ -7,11 +8,14 @@ module.exports = {
   if (!name || !mail || !pwd)
     return res.status(400).json({ message: "email and password are required" });
 
-  // check for clients usernames in the db
-  const duplicate = await Client.findOne({
-    email: mail,
-  }).exec();
-  if (duplicate) return res.status(409).json({'message': 'Email duplicated'}); //conflict
+  // check for clients email or "name" in the db
+  let duplicatedEmail;
+  if(validator.isEmail(mail)){
+    duplicatedEmail = await Client.findOne({
+      email: mail
+    }).exec();
+  }
+  if (duplicatedEmail || !validator.isEmail(mail)) return res.status(409).json({'message': 'Email duplicated or invalid'}); //conflict
 
   try {
     //encrypt pawd
