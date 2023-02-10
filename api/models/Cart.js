@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const Seller = require('./Seller');
+const mongoose = require("mongoose");
 
-const StoreSchema = new mongoose.Schema({
+const CartSchema = new mongoose.Schema({
     storeName: {
         type: String,
         required: true,
@@ -9,8 +8,10 @@ const StoreSchema = new mongoose.Schema({
     description: {
         type: String,
     },
-    sellerId: {
+    clientId: {
         type: String,
         required: true,
     }
 });
+
+module.exports = mongoose.model("Cart", CartSchema);
