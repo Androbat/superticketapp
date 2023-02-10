@@ -25,6 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use('/clients', require('./routes/clientsRoutes'))
+app.use('/sellers', require('./routes/sellersRoutes'))
 
 
 
