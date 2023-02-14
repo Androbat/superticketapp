@@ -34,38 +34,3 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`App listening on port ${PORT}!`))
 
 
-// variables creadas anteriormente.
-// const Ticket = require('./models/Ticket');
-
-
-// push to master
-    // let addTicket = (req, reply) => {
-        
-          
-
-    //       try {
-
-    //         const ticket = new Ticket({ticket_name: "Grada", price: 1.52, description: "hola"})
-    //         return ticket.save()
-
-    //         console.log("It's working");
-  
-    //       } catch (error)
-    //       {
-
-    //         console.error(error);
-    //       }
-        
-    //   }
-    
-
-    /* testing
-    const database = moongose.connection;
-
-    database.on('Error', console.error.bind(console, 'connection error: '));
-    database.once('open', () => {
-        console.log('coneccted!');
-    });
-    */
-
-    // addTicket();
