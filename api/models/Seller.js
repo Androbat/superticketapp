@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const SellerSchema = new mongoose.Schema(
   {
-    sellerName: { 
+    sellername: { 
         type: String, 
     },
     email: {
