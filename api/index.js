@@ -6,8 +6,8 @@ const logger = require('morgan')
 require('dotenv').config({path: './config/.env'});
 // routes
 const clientRoutes = require('./routes/clientsRoutes')
-const authRoutes = require('./routes/clientsRoutes')
-const sellerRoutes = require('./routes/clientsRoutes')
+const authRoutes = require('./routes/authRoutes')
+const sellerRoutes = require('./routes/sellersRoutes')
 
 const connectDB = require('./config/database')
 
