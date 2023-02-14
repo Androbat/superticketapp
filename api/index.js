@@ -16,6 +16,9 @@ const connectDB = require('./config/database')
 mongoose.set("strictQuery", false);
 connectDB()
 
+app.get("/", (req, res) => {
+  res.send('klk')
+});
 
 // Cross Origin Resource Sharing
 app.use(cors());
